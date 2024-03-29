@@ -6,6 +6,9 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
+using YourProjectNamespace.Data;
+using Microsoft.AspNetCore.Mvc;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,8 +18,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthorization();
+builder.Services.AddHttpClient<IBNBChainService, BNBChainService>();
+builder.Services.AddControllers();
+builder.Services.AddScoped<TokenController>();
+
+// builder.Services.AddHostedService<TokenInfoUpdater>();
 
 string jwtKey = builder.Configuration["JwtConfig:Token"] ?? "fallback-secure-key-if-none-configured";
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))),
+    ServiceLifetime.Scoped);
+
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -44,66 +59,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.MapPost("/login", () =>
-{
-    var claims = new[]
-    {
-        new Claim(ClaimTypes.Name, "User"), // Replace with the user's username or other identifier
-    };
-
-    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)); // Replace with a secure key
-    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-    var token = new JwtSecurityToken(
-        claims: claims,
-        expires: DateTime.Now.AddHours(1),
-        signingCredentials: creds);
-
-    return new
-    {
-        token = new JwtSecurityTokenHandler().WriteToken(token)
-    };
-})
-.WithName("Login");
-
-app.MapPost("/calculate-supply", (HttpContext httpContext) =>
-{
-    // Simulate the token supply calculation
-    var totalSupply = 1000000M; // Example total supply, you would fetch this from the BNB Chain
-    var nonCirculating = 200000M; // Example non-circulating amount, sum of specified addresses
-    var circulatingSupply = totalSupply - nonCirculating;
-    var token = httpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-    Console.WriteLine($"Token: {token}");
-    // Create and return a token info object
-    var tokenInfo = new
-    {
-        Name = "BLP Token",
-        TotalSupply = totalSupply,
-        CirculatingSupply = circulatingSupply
-    };
-
-    return tokenInfo;
-})
-// .RequireAuthorization()
-.WithName("CalculateSupply"); ;
-
+app.MapControllers();
 app.Run();
 
-partial class Program
-{
-    static void Main()
-    {
-        Console.WriteLine(GenerateSecureKey());
-    }
-
-    public static string GenerateSecureKey()
-    {
-        using (var rng = new RNGCryptoServiceProvider())
-        {
-            var randomBytes = new byte[32]; // 256 bits
-            rng.GetBytes(randomBytes);
-            return Convert.ToBase64String(randomBytes);
-        }
-    }
-}

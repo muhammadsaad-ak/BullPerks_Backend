@@ -1,3 +1,4 @@
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -8,18 +9,27 @@ using Microsoft.IdentityModel.Tokens;
 [ApiController]
 public class AuthController : ControllerBase
 {
-    [HttpPost("login")]
-    public IActionResult Login()
+    private string jwtKey;
+
+    public AuthController()
     {
-        // In a real application, you should validate the username and password.
-        // For simplicity, we are skipping that step.
+        jwtKey = GenerateSecureKey();
+    }
+
+    [HttpPost("login")]
+    public IActionResult Login(string username, string password)
+    {
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+        {
+            return BadRequest("Invalid username or password.");
+        }
 
         var claims = new[]
         {
-            new Claim(ClaimTypes.Name, "User"),
+            new Claim(ClaimTypes.Name, username),
         };
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YourVerySecretKey"));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
@@ -31,5 +41,15 @@ public class AuthController : ControllerBase
         {
             token = new JwtSecurityTokenHandler().WriteToken(token)
         });
+    }
+
+    private static string GenerateSecureKey()
+    {
+        using (var rng = new System.Security.Cryptography.RNGCryptoServiceProvider())
+        {
+            var randomBytes = new byte[32]; // 256 bits
+            rng.GetBytes(randomBytes);
+            return Convert.ToBase64String(randomBytes);
+        }
     }
 }

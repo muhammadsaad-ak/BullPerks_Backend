@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj": {}
+    "d:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj": {}
   },
   "projects": {
-    "D:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj": {
+    "d:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj",
+        "projectUniqueName": "d:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj",
         "projectName": "BullPerks_Backend",
-        "projectPath": "D:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj",
+        "projectPath": "d:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj",
         "packagesPath": "C:\\Users\\muham\\.nuget\\packages\\",
-        "outputPath": "D:\\BullPerks\\BullPerks_Backend\\obj\\",
+        "outputPath": "d:\\BullPerks\\BullPerks_Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\muham\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -51,6 +51,12 @@
               "target": "Package",
               "version": "[8.0.3, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.3, )"
@@ -58,6 +64,10 @@
             "Nethereum.Web3": {
               "target": "Package",
               "version": "[4.19.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[8.0.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
