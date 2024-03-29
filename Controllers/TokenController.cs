@@ -14,7 +14,7 @@ public class TokenController : ControllerBase
     }
 
     // This endpoint requires authentication and calculates the supply
-    // [Authorize]
+    [Authorize]
     [HttpPost("calculate-supply")]
     public async Task<ActionResult<TokenInfo>> CalculateAndStoreSupply()
     {
