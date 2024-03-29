@@ -1,6 +1,6 @@
 # Project Name
 
-Brief description of your project.
+BullPerks Backend
 
 ## Table of Contents
 
