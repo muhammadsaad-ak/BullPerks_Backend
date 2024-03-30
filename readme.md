@@ -30,16 +30,20 @@ List the technologies used in your project. For example:
 
 ### Setting up the Database
 
-1. Install PHPMyAdmin on your local machine if not already installed.
-2. Access PHPMyAdmin in your browser.
-3. Create a new database named `your_database_name`.
+1. Install Xampp Control panel on your local machine "if not already installed.
+2. Run "Apache" and "MySQL" service from Xampp's Control panel.
+3. Then click on "Admin" button under Actions section. You will get access to the Database view on the browser.
+4. Create a new database named `your_database_name`.
 
 ### Running the Application
 
 1. Clone this repository to your local machine.
 2. Navigate to the project directory.
 3. Install the necessary dependencies using `dotnet restore`.
-4. Update the database connection string in `appsettings.json` file with your MySQL database credentials.
+4. Update the database connection string in `appsettings.json` file with your MySQL database credentials i.e.
+- (`json`"ConnectionStrings": {
+        "DefaultConnection": "server=localhost;port=3306;database=bullperks_db_main;user=root;password="
+    }`)
 5. Run the application using `dotnet run`.
 
 ## Usage
