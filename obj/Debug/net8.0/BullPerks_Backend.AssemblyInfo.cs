@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BullPerks_Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c93ded64f863c80324074a1295086ea6cb597e6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2bc2abc13e5de04a9e7f612be57d952d1a101d9")]
 [assembly: System.Reflection.AssemblyProductAttribute("BullPerks_Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BullPerks_Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

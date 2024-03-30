@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj": {}
+    "D:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj": {}
   },
   "projects": {
-    "d:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj": {
+    "D:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj",
+        "projectUniqueName": "D:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj",
         "projectName": "BullPerks_Backend",
-        "projectPath": "d:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj",
+        "projectPath": "D:\\BullPerks\\BullPerks_Backend\\BullPerks_Backend.csproj",
         "packagesPath": "C:\\Users\\muham\\.nuget\\packages\\",
-        "outputPath": "d:\\BullPerks\\BullPerks_Backend\\obj\\",
+        "outputPath": "D:\\BullPerks\\BullPerks_Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\muham\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -46,6 +46,10 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.3, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",

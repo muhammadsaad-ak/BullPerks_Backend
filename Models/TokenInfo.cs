@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 public class TokenInfo
@@ -7,4 +8,6 @@ public class TokenInfo
     public string Name { get; set; }
     public decimal TotalSupply { get; set; }
     public decimal CirculatingSupply { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
 }
