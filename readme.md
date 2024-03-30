@@ -41,9 +41,9 @@ List the technologies used in your project. For example:
 2. Navigate to the project directory.
 3. Install the necessary dependencies using `dotnet restore`.
 4. Update the database connection string in `appsettings.json` file with your MySQL database credentials i.e.
-- (`json`"ConnectionStrings": {
+- `"ConnectionStrings": {
         "DefaultConnection": "server=localhost;port=3306;database=bullperks_db_main;user=root;password="
-    }`)
+    }`
 5. Run the application using `dotnet run`.
 
 ## Usage
