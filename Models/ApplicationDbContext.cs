@@ -9,7 +9,5 @@ namespace YourProjectNamespace.Data
         {
         }
         public DbSet<TokenInfo> Tokens { get; set; }
-        // Define DbSets for your entities, e.g., 
-        // public DbSet<YourEntity> YourEntities { get; set; }
     }
 }

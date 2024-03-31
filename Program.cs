@@ -13,8 +13,6 @@ using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthorization();
@@ -22,7 +20,6 @@ builder.Services.AddHttpClient<IBNBChainService, BNBChainService>();
 builder.Services.AddControllers();
 builder.Services.AddScoped<TokenController>();
 
-// builder.Services.AddHostedService<TokenInfoUpdater>();
 
 string jwtKey =
 builder.Configuration["JwtConfig:Token"] ?? "fallback-secure-key-if-none-configured";
@@ -60,19 +57,17 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
+
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
-
-// app.UseHttpsRedirection();
 app.UseCors("AllowLocalhost");
 app.MapControllers();
 app.Run();

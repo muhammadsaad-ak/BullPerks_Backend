@@ -19,7 +19,6 @@ public class AuthController : ControllerBase
             return BadRequest("Invalid username or password.");
         }
 
-        // Generate token only if it's not already generated
         if (string.IsNullOrEmpty(_generatedToken))
         {
             _generatedToken = GenerateToken(model.Username);
@@ -43,7 +42,7 @@ public class AuthController : ControllerBase
 
         var token = new JwtSecurityToken(
             claims: claims,
-            expires: DateTime.Now.AddHours(1), // Adjust token lifetime as needed
+            expires: DateTime.Now.AddHours(1),
             signingCredentials: creds);
 
         return new JwtSecurityTokenHandler().WriteToken(token);
@@ -65,7 +64,7 @@ public class AuthController : ControllerBase
     {
         if (_generatedToken == null)
         {
-            _generatedToken = GenerateToken("default_username"); // Provide a default username or obtain it from configuration
+            _generatedToken = GenerateToken("default_username");
         }
         return _generatedToken;
     }

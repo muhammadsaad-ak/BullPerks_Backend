@@ -27,10 +27,8 @@ public class BNBChainService : IBNBChainService
         var requestUri = $"https://api.bscscan.com/api?module=stats&action=tokensupply&contractaddress={tokenAddress}&apikey={_apiKey}";
         var response = await _httpClient.GetStringAsync(requestUri);
         var responseObject = JObject.Parse(response);
-        // Parse the response to extract the total supply.
-        // The parsing will depend on the response structure.
         var result = responseObject["result"].ToString();
-        return decimal.Parse(result); // Simplified, adjust based on actual API response structure
+        return decimal.Parse(result);
     }
 
     public async Task<decimal> GetBalanceAsync(string tokenAddress, string walletAddresses)
@@ -39,7 +37,7 @@ public class BNBChainService : IBNBChainService
         var balanceResponse = await _httpClient.GetStringAsync(balanceRequestUri);
         var responseObject = JObject.Parse(balanceResponse);
 
-        if (responseObject["status"].ToString() == "0") // Check if the status is 0, indicating an error
+        if (responseObject["status"].ToString() == "0")
         {
             var errorMessage = responseObject["message"].ToString();
             throw new Exception($"Error retrieving balance: {errorMessage}");
